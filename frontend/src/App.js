@@ -19,6 +19,23 @@ function Button(props) {
   );
 }
 
+function ListItem(props) {
+  return <li>{props.value}</li>;
+}
+
+function List(props) {
+  const sortedWins = props.sortedWins;
+  const listItems = sortedWins.map((sortedWins) =>
+    <ListItem key={sortedWins.toString()}
+              value={sortedWins.name + ": " + sortedWins.wins} />
+  );
+  return (
+    <ul>
+      {listItems}
+    </ul>
+  );
+}
+
 class App extends Component {
 
   constructor() {
@@ -37,7 +54,7 @@ class App extends Component {
 
   getNewApples(){
     let thisComponent = this;
-    fetch('/data')
+    fetch('/comparisonData')
       .then(res => res.json())
       .then(function(data){
         console.log(data);
@@ -55,10 +72,30 @@ class App extends Component {
   doPut(){
     let formData = new FormData();
     formData.append('selected_id', this.state.selected_id);
-    return fetch('/updatedata',{
+    return fetch('/updateData',{
       method: 'PUT',
       body: formData
     })
+  }
+
+  updateLeaderboard(){
+    let thisComponent = this;
+    fetch('/sortedWins')
+      .then(res => res.json())
+      .then(function(data){
+        console.log(data);
+        let sortedWins = [];
+        for (let i=0; i<data.length; i++){
+          var winObject = {
+            name: data[i].name,
+            wins: data[i].wins
+          }
+          sortedWins.push(winObject);
+        }
+        thisComponent.setState({
+          sortedWins: sortedWins
+        });
+      });
   }
 
   submitWinner(){
@@ -72,41 +109,12 @@ class App extends Component {
     });
   }
 
-  updateLeaderboard(){
-    let thisComponent = this;
-    fetch('/fulldata')
-      .then(res => res.json())
-      .then(function(data){
-        console.log(data);
-        let sortedWins:[];
-        for (var i=0; i<data.length; i++){
-          var winObject = {
-            name: data[i].name,
-            wins: data[i].wins
-          }
-          sortedWins.push(winObject);
-        }
-        sortedWins.sort(function (a, b) {
-          if (a.wins < b.wins) return 1;
-          if (a.wins > b.wins) return -1;
-          return 0;
-        });
-        thisComponent.setState({
-          sortedWins: sortedWins
-        });
-      });
-  }
-
   render() {
     var leftStyle = this.state.selectedimage ==='left' ? 'ImageViewSelected' : 'ImageView';
     var rightStyle = this.state.selectedimage ==='right' ? 'ImageViewSelected' : 'ImageView';
     return (
       <div className='App'>
         <h1>Pick an Apple</h1>
-        <ul>{this.state.ids.toString()}</ul>
-        <ul>{this.state.names.toString()}</ul>
-        <ul>{this.state.pictures.toString()}</ul>
-        <ul>{this.state.wins.toString()}</ul>
 
         <div className = 'Images'>
           <ImageView
@@ -135,6 +143,9 @@ class App extends Component {
               class={'Button'}
               onClick={() => this.updateLeaderboard()}
               text={'Update Leaderboard'}
+          />
+          <List
+              sortedWins={this.state.sortedWins}
           />
         </div>
       </div>
