@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "test": "mocha",
-    "heroku-postbuild": "cd frontend && npm install && npm run build"
+    "heroku-postbuild": "cd frontend && npm install && npm run build && serve -s build"
   },
   "repository": {
     "type": "git",
