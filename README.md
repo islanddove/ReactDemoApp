@@ -22,4 +22,4 @@ To run frontend tests, run 'npm test' from 'frontend/', only do so if the server
 Tests are run from 'frontend/App.test.js'.
 
 # Hosting
-This site is hosted on Heroku at: TBD
+This site is hosted on Heroku at: https://react-demo-app-apples.herokuapp.com/
