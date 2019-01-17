@@ -81,24 +81,21 @@ app.get('/data', function (req, res) {
   let index2 = Math.floor(Math.random() * 10);
   //If same, pick new number until different
   while (index1 === index2) index2 = Math.floor(Math.random() * 10);
-
   let comparisonData = [ fullData[index1], fullData[index2] ];
-
   res.json(comparisonData);
 });
 
-// Return all of the apples
+// Return all of the apples, sorted by wins
 app.get('/fulldata', function (req, res) {
   res.json(fullData);
 });
 
-// Recieves a put with an id, add a win to the apple with that id
+// Recieves a 'PUT' with an id, adds a win to the apple with that id
 app.put('/updatedata', function (req, res) {
   let winner = req.body.selected_id;
+  console.log(winner);
   fullData[winner].wins++;
   res.send("Request Recieved");
 })
-
-
 
 app.listen(port, () => console.log(`Express app listening on port ${port}!`));
