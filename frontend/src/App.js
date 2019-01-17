@@ -23,7 +23,8 @@ function List(props) {
     const sortedWins = props.sortedWins;
     const listItems = sortedWins.map((sortedWins) =>
         <li key={sortedWins.id}>
-            {sortedWins.name + ": " + sortedWins.wins} </li>
+            {sortedWins.name + ": " + sortedWins.wins}
+         </li>
     );
     return (
         <ul>
@@ -51,7 +52,7 @@ class App extends Component {
 
     getNewApples(){
         let thisComponent = this;
-        fetch('/comparisonData').then((res) => {
+        fetch('/getComparisonData').then((res) => {
             if (res.ok) {
                 return res.json();
             }
@@ -63,8 +64,10 @@ class App extends Component {
                 console.log('Getting 2 random apples: ', data);
                 let ids = [], names = [], pictures = [], wins = [];
                 for (let i=0; i<2; i++){
-                    ids.push(data[i].id); names.push(data[i].name);
-                    pictures.push(data[i].picture); wins.push(data[i].wins);
+                    ids.push(data[i].id);
+                    names.push(data[i].name);
+                    pictures.push(data[i].picture);
+                    wins.push(data[i].wins);
                 }
                 thisComponent.setState({
                     ids: ids, names: names, pictures: pictures, wins: wins
@@ -77,7 +80,7 @@ class App extends Component {
 
     updateLeaderboard(){
         let thisComponent = this;
-        fetch('/sortedWins').then((res) => {
+        fetch('/getSortedWins').then((res) => {
             if (res.ok) {
                 return res.json();
             }
@@ -86,7 +89,7 @@ class App extends Component {
                 }
             })
             .then((data) => {
-                console.log('Getting sorted apple data from server', data);
+                console.log('Getting sorted apple data from server: ', data);
                 let sortedWins = [];
                 for (let i=0; i<data.length; i++){
                     var winObject = {
@@ -109,7 +112,7 @@ class App extends Component {
         let formData = new FormData();
         formData.append('selected_id', this.state.selected_id);
         console.log('Submitting winning apple', formData);
-        return fetch('/updateData',{
+        return fetch('/putUpdateData',{
             method: 'PUT',
             body: formData
         })

@@ -76,7 +76,7 @@ var fullData = [
 ]
 
 // Each request returns two random apples to be compared against each other
-app.get('/comparisonData', function (req, res) {
+app.get('/getComparisonData', function (req, res) {
     let index1 = Math.floor(Math.random() * 10);
     let index2 = Math.floor(Math.random() * 10);
     //If same, pick new number until different
@@ -86,7 +86,7 @@ app.get('/comparisonData', function (req, res) {
 });
 
 // Return all of the apples, sorted by wins utilizing deep copy trick
-app.get('/sortedWins', function (req, res) {
+app.get('/getSortedWins', function (req, res) {
     let sortedWins = JSON.parse(JSON.stringify(fullData));
     sortedWins.sort(function (a, b) {
         if (a.wins < b.wins) return 1;
@@ -97,11 +97,23 @@ app.get('/sortedWins', function (req, res) {
 });
 
 // Recieves a 'PUT' with an id, adds a win to the apple with that id
-app.put('/updateData', function (req, res) {
-    let winner = req.body.selected_id;
-    console.log(winner);
-    fullData[winner].wins++;
-    res.send("Request Recieved");
+app.put('/putUpdateData', function (req, res) {
+    if (req.body.selected_id){
+        let winner = req.body.selected_id;
+        //console.log('Winning apple: ', winner);
+        fullData[winner].wins++;
+        res.status(200).send({
+            success: 'true',
+            message: 'request recieved'
+        });
+    } else{
+        res.status(400).send({
+            success: 'false',
+            message: 'no id selected'
+        });
+    }
 })
 
 app.listen(port, () => console.log(`Express app listening on port ${port}!`));
+
+module.exports = app;

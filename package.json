@@ -4,8 +4,8 @@
   "description": "React Demo App with an Express API Backend",
   "main": "index.js",
   "scripts": {
-    "test": "npm start",
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,10 @@
     "multer": "^1.4.1"
   },
   "devDependencies": {
-    "nodemon": "^1.18.9"
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.9",
+    "superagent": "^4.1.0",
+    "supertest": "^3.4.1"
   }
 }
