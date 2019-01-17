@@ -8,6 +8,7 @@ const port = 3010;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(upload.array());
+app.use(express.static(path.join(__dirname, 'frontend/build')));
 
 //load data from json file
 app.use(express.static('img'));
@@ -113,6 +114,10 @@ app.put('/putUpdateData', function (req, res) {
         });
     }
 })
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/frontend/build/index.html'));
+});
 
 app.listen(process.env.PORT || port);
 
