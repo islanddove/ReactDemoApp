@@ -77,34 +77,31 @@ var fullData = [
 
 // Each request returns two random apples to be compared against each other
 app.get('/comparisonData', function (req, res) {
-  let index1 = Math.floor(Math.random() * 10);
-  let index2 = Math.floor(Math.random() * 10);
-  //If same, pick new number until different
-  while (index1 === index2) index2 = Math.floor(Math.random() * 10);
-  let comparisonData = [ fullData[index1], fullData[index2] ];
-  res.json(comparisonData);
+    let index1 = Math.floor(Math.random() * 10);
+    let index2 = Math.floor(Math.random() * 10);
+    //If same, pick new number until different
+    while (index1 === index2) index2 = Math.floor(Math.random() * 10);
+    let comparisonData = [ fullData[index1], fullData[index2] ];
+    res.json(comparisonData);
 });
 
-// Return all of the apples, sorted by wins utilizing deep copy
+// Return all of the apples, sorted by wins utilizing deep copy trick
 app.get('/sortedWins', function (req, res) {
-
-  let sortedWins = JSON.parse(JSON.stringify(fullData));
-
-  sortedWins.sort(function (a, b) {
-    if (a.wins < b.wins) return 1;
-    if (a.wins > b.wins) return -1;
-    return 0;
-  });
-
-  res.json(sortedWins);
+    let sortedWins = JSON.parse(JSON.stringify(fullData));
+    sortedWins.sort(function (a, b) {
+        if (a.wins < b.wins) return 1;
+        if (a.wins > b.wins) return -1;
+        return 0;
+    });
+    res.json(sortedWins);
 });
 
 // Recieves a 'PUT' with an id, adds a win to the apple with that id
 app.put('/updateData', function (req, res) {
-  let winner = req.body.selected_id;
-  console.log(winner);
-  fullData[winner].wins++;
-  res.send("Request Recieved");
+    let winner = req.body.selected_id;
+    console.log(winner);
+    fullData[winner].wins++;
+    res.send("Request Recieved");
 })
 
 app.listen(port, () => console.log(`Express app listening on port ${port}!`));

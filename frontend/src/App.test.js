@@ -7,3 +7,5 @@ it('renders without crashing', () => {
   ReactDOM.render(<App />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
+
+// NOTE NOTE NOTE API ***MUST*** be started using 'npm start' in the root project directory for these tests to work!
