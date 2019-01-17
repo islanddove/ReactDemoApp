@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 var multer = require('multer');
+const path = require('path');
 var upload = multer();
 const app = express();
 const port = 3010;
