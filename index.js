@@ -13,7 +13,11 @@ app.use(express.static(path.join(__dirname, 'frontend/build')));
 
 //load data from json file
 app.use(express.static('img'));
-var imgPath = process.env.PORT || "http://localhost:3010"
+var imgPath = "";
+if (!process.env.PORT) {
+    imgPath = "http://localhost:3010";
+}
+
 var fullData = [
   {
     id: 0,
