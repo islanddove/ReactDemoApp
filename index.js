@@ -114,6 +114,6 @@ app.put('/putUpdateData', function (req, res) {
     }
 })
 
-app.listen(port, () => console.log(`Express app listening on port ${port}!`));
+app.listen(process.env.PORT || port);
 
 module.exports = app;
