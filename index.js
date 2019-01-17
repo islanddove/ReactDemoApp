@@ -13,66 +13,66 @@ app.use(express.static(path.join(__dirname, 'frontend/build')));
 
 //load data from json file
 app.use(express.static('img'));
-var imgPath = "http://localhost:3010/"
+var imgPath = process.env.PORT || "http://localhost:3010"
 var fullData = [
   {
     id: 0,
     name: "HoneyCrisp",
-    picture: imgPath + "apple-honeycrisp.png",
+    picture: imgPath + "/apple-honeycrisp.png",
     wins: 0
   },
   {
     id: 1,
     name: "Red Delicious",
-    picture: imgPath + "apple-red-delicious.png",
+    picture: imgPath + "/apple-red-delicious.png",
     wins: 0
   },
   {
     id: 2,
     name: "Gala",
-    picture: imgPath + "apple-gala.png",
+    picture: imgPath + "/apple-gala.png",
     wins: 0
   },
   {
     id: 3,
     name: "Fuji",
-    picture: imgPath + "apple-fuji.png",
+    picture: imgPath + "/apple-fuji.png",
     wins: 0
   },
   {
     id: 4,
     name: "Granny Smith",
-    picture: imgPath + "apple-grannysmith.png",
+    picture: imgPath + "/apple-grannysmith.png",
     wins: 0
   },
   {
     id: 5,
     name: "Golden Delicious",
-    picture: imgPath + "apple-golden-delicious.png",
+    picture: imgPath + "/apple-golden-delicious.png",
     wins: 0
   },
   {
     id: 6,
     name: "Ambrosia",
-    picture: imgPath + "apple-ambrousia.png",
+    picture: imgPath + "/apple-ambrousia.png",
     wins: 0
   },
   {
     id: 7,
     name: "McIntosh",
-    picture: imgPath + "apple-mcIntosh.png",
+    picture: imgPath + "/apple-mcIntosh.png",
     wins: 0
   },
   {
     id: 8,
     name: "Crispin",
-    picture: imgPath + "apple-crispin.png",
+    picture: imgPath + "/apple-crispin.png",
     wins: 0
   },
   {
     id: 9,
     name: "JonaGold",
-    picture: imgPath + "apple-jonagold.png",
+    picture: imgPath + "/apple-jonagold.png",
     wins: 0
   }
 ]
