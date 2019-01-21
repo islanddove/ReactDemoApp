@@ -22,14 +22,14 @@ function Button(props) {
 function List(props) {
     const sortedWins = props.sortedWins;
     const listItems = sortedWins.map((sortedWins) =>
-        <li key={sortedWins.id}>
+        <li key={sortedWins.id} className='li'>
             {sortedWins.name + ": " + sortedWins.wins}
          </li>
     );
     return (
-        <ul>
+        <ol className='ol'>
             {listItems}
-        </ul>
+        </ol>
     );
 }
 

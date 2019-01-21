@@ -10,6 +10,17 @@
   border: 5px solid #FF0000;
 }
 
+.ol {
+  list-style-position: inside;
+  margin: 5;
+  padding: 5;
+}
+
+.li {
+  margin: 0;
+  padding: 0;
+}
+
 .App {
   text-align: center;
 }
