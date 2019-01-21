@@ -120,6 +120,7 @@ class App extends Component {
 
     submitWinner(){
         if (this.state.selected_id === -1){
+            alert('Please select an apple!');
             return;
         }
         this.doPut();
@@ -153,7 +154,7 @@ class App extends Component {
                     <Button
                         class={'Button'}
                         onClick={() => this.submitWinner()}
-                        text={'Submit Apple'}
+                        text={'Submit an Apple'}
                     />
                 </div>
                 <div className = 'Leaderboard'>
