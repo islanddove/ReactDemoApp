@@ -78,15 +78,21 @@ var fullData = [
     name: "JonaGold",
     picture: imgPath + "/apple-jonagold.png",
     wins: 0
+  },
+  {
+    id: 10,
+    name: "Empire",
+    picture: imgPath + "/apple-empire.png",
+    wins: 0
   }
 ]
 
 // Each request returns two random apples to be compared against each other
 app.get('/getComparisonData', function (req, res) {
-    let index1 = Math.floor(Math.random() * 10);
-    let index2 = Math.floor(Math.random() * 10);
+    let index1 = Math.floor(Math.random() * 11);
+    let index2 = Math.floor(Math.random() * 11);
     //If same, pick new number until different
-    while (index1 === index2) index2 = Math.floor(Math.random() * 10);
+    while (index1 === index2) index2 = Math.floor(Math.random() * 11);
     let comparisonData = [ fullData[index1], fullData[index2] ];
     res.json(comparisonData);
 });
