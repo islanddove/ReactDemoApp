@@ -21,7 +21,7 @@
   "homepage": "https://github.com/islanddove/ReactDemoApp#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "multer": "^1.4.1",
     "serve": "^10.1.1"
   },
